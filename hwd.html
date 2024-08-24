@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function fetchUTCData() {
+            const url = 'https://script.google.com/macros/s/AKfycbxqnD28Fit2qM-IbSvtQxeoagmPLcEEAWdbYODyXdp1QM0CuvMCzNjmxvE6uvieM52k/exec';
+            fetch(url)
+                .then(response => response.text()) // Handle plain text response
+                .then(text => {
+                    document.getElementById('utc-time').innerText = text;
+                })
+                .catch(() => {
+                    document.getElementById('utc-time').innerText = 'Error fetching UTC time';
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchUTCData);
+    </script>
+</head>
+<body>
+    <pre id="utc-time"></pre>
+</body>
+</html>
