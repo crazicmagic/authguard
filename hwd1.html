@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTC Time</title>
+    <style>
+        body {
+            display: none; /* Hide the page content until the time is loaded */
+        }
+    </style>
+    <script>
+        function fetchUTCData() {
+            const url = 'https://script.google.com/macros/s/AKfycbxqnD28Fit2qM-IbSvtQxeoagmPLcEEAWdbYODyXdp1QM0CuvMCzNjmxvE6uvieM52k/exec';
+            fetch(url)
+                .then(response => response.text()) // Handle plain text response
+                .then(text => {
+                    document.getElementById('utc-time').innerText = text;
+                    document.body.style.display = 'block'; // Show the content once time is loaded
+                })
+                .catch(() => {
+                    document.getElementById('utc-time').innerText = 'Error fetching UTC time';
+                    document.body.style.display = 'block'; // Show the content even if there's an error
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchUTCData);
+    </script>
+</head>
+<body>
+    <pre id="utc-time">Loading...</pre>
+</body>
+</html>
